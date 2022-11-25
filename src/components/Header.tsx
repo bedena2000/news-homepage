@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import './Header.css';
 
 // Components
 import MenuElement from './MenuElement';
+import BurgerMenuIcons from './BurgerMenuIcons';
 
 // Assets
 import logo from '../assets/images/logo.svg';
-import burgerMenuIcon from '../assets/images/icon-menu.svg';
 
-class Header extends Component {
+interface HeaderPropsTypes {
+  changeBurger: () => void;
+}
+
+class Header extends Component<HeaderPropsTypes> {
   render() {
     return (
       <header className="mb-[60px]">
@@ -15,16 +20,14 @@ class Header extends Component {
           <div>
             <img src={logo} alt="MainLogo" />
           </div>
-          <ul className="table:flex table:gap-[20px] table:items-center hidden">
+          <ul className="myBurgerMenu">
             <MenuElement menuTitle="Home" />
             <MenuElement menuTitle="New" />
             <MenuElement menuTitle="Popular" />
             <MenuElement menuTitle="Trending" />
             <MenuElement menuTitle="Categories" />
           </ul>
-          <div className="table:hidden cursor-pointer">
-            <img src={burgerMenuIcon} alt="burgerMenuLogo" />
-          </div>
+          <BurgerMenuIcons changeBurger={this.props.changeBurger} />
         </div>
       </header>
     );
